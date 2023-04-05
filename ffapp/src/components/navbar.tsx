@@ -1,15 +1,21 @@
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 
-export const Navbar = () => {
+interface Props {
+  onLogoClick: (section:string) => void;
+  onProfileClick: (section:string) => void;
+}
+
+export const Navbar = ({ onLogoClick, onProfileClick }:Props) => {
+
   return (
     <>
       <div className="navbar-container bg-light p-3">
-        <div className="app-logo">
+        <div className="app-logo" onClick={ () => onLogoClick('home') }>
           <BsFillLightningChargeFill />
           three pics
         </div>
-        <FaUserCircle />
+        <FaUserCircle onClick={ () => onProfileClick('profile') } />
       </div>
     </>
   )

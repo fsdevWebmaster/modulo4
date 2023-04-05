@@ -6,7 +6,7 @@ export const dummiePosts: IPost[] = [
     createdAt: "2 mins ago",
     likes: 11,
     owner: "@led",
-    text: "Congue consequat efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
+    text: "Congue consequat primer post suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
     comments: "Comments (15)"
   },
   {
@@ -14,7 +14,7 @@ export const dummiePosts: IPost[] = [
     createdAt: "5 mins ago",
     likes: 22,
     owner: "@zepelin",
-    text: "Congue consequat efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
+    text: "Congue consequat segundo post texto común efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
     comments: "Comments (12)"
   },
   {
@@ -22,7 +22,7 @@ export const dummiePosts: IPost[] = [
     createdAt: "6 mins ago",
     likes: 23,
     owner: "@cure",
-    text: "Congue consequat efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
+    text: "Congue consequat tercer post efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
     comments: "Comments (8)"
   },
   {
@@ -30,7 +30,7 @@ export const dummiePosts: IPost[] = [
     createdAt: "8 mins ago",
     likes: 18,
     owner: "@iron",
-    text: "Congue consequat efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
+    text: "Congue consequat cuarto post texto común efficitur sollicitudin suscipit vestibulum letius inceptos integer ullamcorper malesuada purus luctus commodo dis aptent elementum aliquet",
     comments: "Comments (14)"
   }
 ];
