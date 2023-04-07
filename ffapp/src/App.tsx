@@ -21,9 +21,19 @@ function App() {
   }
 
   useEffect(() => {
-    setPosts(dummiePosts);
+    const postPromise = new Promise<IPost[]>((resolve, reject) => {
+      setTimeout(() => {
+        if (!dummiePosts) {
+          reject("Error getting posts.");
+        }
+        resolve(dummiePosts);
+      }, 3000);
+    });   
+     
+    postPromise.then((result) => {
+      setPosts(result);
+    });
   }, []);
-  
 
   return (
     <>
@@ -35,8 +45,15 @@ function App() {
         { section === 'home' 
           ? 
             <>
-              <Search onSearch={ (value) => handleSearch(value)} />
-              <PostsList posts={ posts } />
+              { posts.length > 0 
+                ?
+                <>
+                  <Search onSearch={ (value) => handleSearch(value)} />
+                  <PostsList posts={ posts } />
+                </>
+                :
+                  <p className="loading">Loading...</p>
+              }
             </>
           :
             <Profile 
