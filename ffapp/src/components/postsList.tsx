@@ -1,11 +1,10 @@
+import { dummiePosts } from "../dummieData/database/posts";
 import { IPost } from "../interfaces/IPost";
 import { Post } from "./post";
 
-interface Props {
-  posts: IPost[];
-}
+export const PostsList = () => {
+  const posts:IPost[] = dummiePosts;
 
-export const PostsList = ({ posts }: Props) => {
   return (
     <>
       { posts.map( (post, i) => (

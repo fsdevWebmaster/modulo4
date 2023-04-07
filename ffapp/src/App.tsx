@@ -1,66 +1,17 @@
-import { useEffect, useState } from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Navbar, PostsList, Search } from './components';
-import { dummiePosts } from './dummieData/database/posts';
-import { dummieProfile } from './dummieData/profile';
-import { IPost } from './interfaces/IPost';
-import { Profile } from './components/profile';
 
 function App() {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const [section, setSection] = useState<string>('home');
-
-  const handleSearch = (value:string) => {
-    if (value) {
-      const found = dummiePosts.filter(item => item.text.includes(value));
-      setPosts(found);
-    }
-  }
-
-  useEffect(() => {
-    const postPromise = new Promise<IPost[]>((resolve, reject) => {
-      setTimeout(() => {
-        if (!dummiePosts) {
-          reject("Error getting posts.");
-        }
-        resolve(dummiePosts);
-      }, 3000);
-    });   
-     
-    postPromise.then((result) => {
-      setPosts(result);
-    });
-  }, []);
-
   return (
     <>
-      <Navbar 
-        onLogoClick={ (sect) => setSection(sect) } 
-        onProfileClick={ (sect) => setSection(sect) }/>
+      <Navbar />
 
       <div className="container p-4">
-        { section === 'home' 
-          ? 
-            <>
-              { posts.length > 0 
-                ?
-                <>
-                  <Search onSearch={ (value) => handleSearch(value)} />
-                  <PostsList posts={ posts } />
-                </>
-                :
-                  <p className="loading">Loading...</p>
-              }
-            </>
-          :
-            <Profile 
-              avatar={ dummieProfile.avatar } 
-              username={ dummieProfile.username } 
-              bio={ dummieProfile.bio } />
-        }
+        <Search />
+        <PostsList />
       </div>
     </>
   );
