@@ -1,0 +1,30 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+  box-shadow: 0 1px 5px #ccc;
+}
+
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-row.comments {
+  justify-content: start;
+}
+
+.post-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.likes {
+  border-radius: 5px;
+}
+
+.created {
+  color: #777;
+}
