@@ -27,3 +27,5 @@ export const Post = ({imgPath, createdAt, likes, owner, text, comments}: IPost) 
     </div>
   )
 }
+
+// https://three-points.herokuapp.com
