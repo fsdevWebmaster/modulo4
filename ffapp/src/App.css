@@ -28,3 +28,16 @@
 .created {
   color: #777;
 }
+
+.login-form {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.login-form label {
+  width: 100%;
+}
+
+.login-form button {
+  width: 100%;
+}
