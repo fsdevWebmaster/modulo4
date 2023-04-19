@@ -2,20 +2,24 @@ import { dummiePosts } from "../dummieData/database/posts";
 import { IPost } from "../interfaces/IPost";
 import { Post } from "./post";
 
-export const PostsList = () => {
-  const posts:IPost[] = dummiePosts;
+interface Props {
+  posts: IPost[]
+}
 
+export const PostsList = ({ posts }:Props) => {
   return (
     <>
-      { posts.map( (post, i) => (
+      { posts.map((post:IPost) => (
         <Post
-          key={ i } 
-          imgPath={ post.imgPath }
-          createdAt={ post.createdAt }
-          likes={ post.likes }
-          owner={ post.owner }
-          text={ post.text }
-          comments={ post.comments }
+          key={post.id}
+          id={post.id}
+          image={post.image}
+          createdAt={post.createdAt}
+          likes={post.likes}
+          author={post.author}
+          text={post.text}
+          comments={post.comments} 
+          updatedAt={post.updatedAt}
         />
       ))}
     </>

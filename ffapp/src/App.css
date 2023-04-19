@@ -6,6 +6,10 @@
   box-shadow: 0 1px 5px #ccc;
 }
 
+.navbar-btn {
+  cursor: pointer;
+}
+
 .content-row {
   display: flex;
   justify-content: space-between;
@@ -41,3 +45,10 @@
 .login-form button {
   width: 100%;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

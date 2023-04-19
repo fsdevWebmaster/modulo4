@@ -1,9 +1,12 @@
+import { IProfile } from "./IProfile";
 
 export interface IPost {
-  imgPath:string;
-  createdAt:string;
-  likes:number;
-  owner:string;
-  text:string;
+  author:IProfile;
   comments:string;
+  createdAt:string;
+  id:string;
+  image:string;
+  likes:number;
+  text:string;
+  updatedAt:string;
 }

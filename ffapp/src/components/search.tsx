@@ -1,6 +1,9 @@
 
+interface Props {
+  onSearch: (strSearch:string) => void;
+}
 
-export const Search = () => {
+export const Search = ({ onSearch }:Props) => {
 
   return (
     <>
@@ -8,7 +11,8 @@ export const Search = () => {
         <input 
           type="text" 
           className="form-control"  
-          placeholder="Search"/>
+          placeholder="Search"
+          onChange={ (e) => onSearch(e.target.value) } />
       </div>
     </>
   )
