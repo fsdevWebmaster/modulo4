@@ -11,15 +11,17 @@ import { IProfile } from './interfaces/IProfile';
 import { IPost } from './interfaces/IPost';
 
 function App() {
-  const [logged, setLogged] = useState<boolean>(false);
+  const [logged, setLogged] = useState<string | null>();
   const [section, setSection] = useState('home');
   const [errorMsg, setErrorMsg] = useState<string | null>();
   const [profileData, setProfileData] = useState<IProfile>(dummieProfile)
   const [posts, setPosts] = useState<IPost[]>([]);
   const [iniPosts, setIniPosts] = useState<IPost[]>([]);
 
-  const handleLogin = (resp:any) => {
-    setLogged(resp);
+  const handleLogin = (token:string | false, userId:string | false) => {
+    if (token) {
+      setLogged(token);
+    }
   }
 
   const handleSection = (section:string) => {
@@ -29,10 +31,7 @@ function App() {
   const handleProfile = (token:string) => {
     getProfile(token)
     .then((result) => {
-      
-      console.log("profile result:", result);
-
-
+      setProfileData(result.data);
     }).catch((err) => {
       setErrorMsg(`Api response: ${err.response.data.message}`);
       console.log("Error getting profile:", err.response.data.message);
@@ -65,14 +64,22 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setLogged(true);
+      setLogged(token);
       handleProfile(token);
       handlePosts(token);
     }
     else {
-      setLogged(false);
+      setLogged(null);
     }
   }, []);
+
+  useEffect(() => {
+    if (logged) {
+      setLogged(logged);
+      handleProfile(logged);
+      handlePosts(logged);
+    }
+  }, [logged]);
 
   useEffect(() => {
     if (posts.length > 0) {
@@ -119,7 +126,7 @@ function App() {
           }
         </>
         :
-        <Login onLoginComplete={ (resp:any) => { handleLogin(resp) } } />
+        <Login onLoginComplete={ (token, userId) => { handleLogin(token, userId) } } />
       }
     </>
   );

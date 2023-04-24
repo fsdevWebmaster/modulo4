@@ -9,8 +9,16 @@ export const getLogin = (username:string, password:string) => {
 }
 
 export const getProfile = ( token:string ) => {
+  if (localStorage.getItem("userId")) {
+    const userId = localStorage.getItem("userId")
+    return axios.get(
+      `${ baseUrl }/api/users/${userId}`,
+      { headers: { 'Authorization': `Bearer ${ token }` } }
+    )
+  }
+
   return axios.get(
-    `${ baseUrl }/api/users/${ '621bfef9621cd815d4c12388' }`,
+    `${ baseUrl }/api/users/me`,
     { headers: { 'Authorization': `Bearer ${ token }` } }
   )
 }
@@ -22,4 +30,10 @@ export const getPosts = ( token:string ) => {
   )
 }
 
+export const updateLikes = ( token:string, postId:string ) => {
+  return axios.get(
+    `${ baseUrl }/api/posts/${postId}/like`,
+    { headers: { 'Authorization': `Bearer ${ token }` } }
+  )
+}
 

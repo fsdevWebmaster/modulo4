@@ -1,15 +1,28 @@
 
+import { useState } from "react";
+
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 
 import { IPost } from "../interfaces/IPost"
-import { useState } from "react";
+import { updateLikes } from "../services/mainService";
 
-export const Post = ({image, createdAt, likes, author, text, comments}: IPost) => {
+export const Post = ({id, image, createdAt, likes, author, text, comments}: IPost) => {
   const [postLikes, setPostLikes] = useState(likes)
 
-  const handleLikes = () => {
+  const handleLikes = (postId:string) => {
     setPostLikes(postLikes + 1);
+    const token = localStorage.getItem("token");
+    if (token) {
+      updateLikes(token, id)
+        .then((result) => {
+          
+          console.log(result);
+
+        }).catch((err) => {
+          console.log("Error updating likes:", err);
+        });
+    }
   }
 
   return (
@@ -18,7 +31,7 @@ export const Post = ({image, createdAt, likes, author, text, comments}: IPost) =
       <div className="post-content px-4">
         <div className="content-row py-2">
           <span className="created">{ createdAt }</span>
-          <span onClick={ handleLikes } className="likes bg-danger text-white px-3 py-2">
+          <span onClick={ () => handleLikes(id) } className="likes bg-danger text-white px-3 py-2">
             <AiOutlineHeart className="me-1" />
             { postLikes }
           </span>

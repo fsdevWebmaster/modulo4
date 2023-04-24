@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getLogin } from "../services/mainService";
 
 type Props = {
-  onLoginComplete: (resp:boolean) => void;
+  onLoginComplete: (token:string | false, userId:string | false) => void;
 }
 
 type LoginData = {
@@ -28,14 +28,18 @@ export const Login = ({ onLoginComplete }: Props) => {
       getLogin(loginData?.username, loginData?.password).then((result) => {
         setError(null);
         setWaitingVisible(false);
-        onLoginComplete(true);
         const { token } = result.data;
+        const payload = token.split('.')[1];
+        const data = JSON.parse(window.atob(payload));
+        const userId = data.sub;
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", data.sub);        
+        onLoginComplete(token, userId);
       }).catch((error) => {
         console.log("Login error:", error.code);
         setWaitingVisible(false);
         setError(error.message);
-        onLoginComplete(false);
+        onLoginComplete(false, false);
       });      
     }
   }
