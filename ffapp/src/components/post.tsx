@@ -9,12 +9,11 @@ import { updateLikes } from "../services/mainService";
 
 export const Post = ({id, image, createdAt, likes, author, text, comments}: IPost) => {
   const [postLikes, setPostLikes] = useState(likes)
-
   const handleLikes = (postId:string) => {
     setPostLikes(postLikes + 1);
     const token = localStorage.getItem("token");
     if (token) {
-      updateLikes(token, id)
+      updateLikes(token, postId)
         .then((result) => {
           
           console.log(result);

@@ -7,6 +7,9 @@ interface Props {
 }
 
 export const PostsList = ({ posts }:Props) => {
+
+  // console.log("posts:", posts);
+
   return (
     <>
       { posts.map((post:IPost) => (
